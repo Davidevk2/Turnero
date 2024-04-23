@@ -10,6 +10,10 @@ public class HomeController : Controller
    
     public IActionResult Index()
     {
+        HttpContext.Session.SetInt32("countSC", 00);
+        HttpContext.Session.SetInt32("countPF", 00);
+        HttpContext.Session.SetInt32("countAM", 00);
+        HttpContext.Session.SetInt32("countIG", 00);
         return View();
     }
 
@@ -25,10 +29,11 @@ public class HomeController : Controller
 
     public IActionResult Turno(string categoria){
 
-        int countSC = 00;
-        int countPF = 00;
-        int countAM = 00;
-        int countIG = 00;
+        int? countSC = HttpContext.Session.GetInt32("countSC");
+        int? countPF = HttpContext.Session.GetInt32("countPF");
+        int? countAM = HttpContext.Session.GetInt32("countAM");
+        int? countIG = HttpContext.Session.GetInt32("countIG");
+
         string seleccion = "";
         string turno = "";
 
