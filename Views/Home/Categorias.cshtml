@@ -1,0 +1,30 @@
+@{
+
+    ViewData["Title"] = "Categorias";
+    string format = "dd/MM/yyyy HH:mm:ss"; 
+    var now = DateTime.Now.ToString(format);
+}
+
+<div class="container">
+    <div class="row">
+        <div class="d-flex">
+            <div class="col float-right">
+                <p>@ViewBag.Usuario</p>
+            </div>
+            <div class="col">
+                <p>@now</p>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="text-center">
+            <h1>Que quires realizar?</h1>
+            <div class="grid-container">
+                <a asp-controller="Home" asp-action="Turno" asp-route-categoria="SC" class="grid-item">Solicitud Citas</a>
+                <a asp-controller="Home" asp-action="Turno" asp-route-categoria="PF" class="grid-item">Pago Facturas</a>
+                <a asp-controller="Home" asp-action="Turno" asp-route-categoria="AM " class="grid-item">Autorizacion Medicamentos</a>
+                <a asp-controller="Home" asp-action="Turno" asp-route-categoria="IG" class="grid-item">Informacion General</a>
+            </div>
+        </div>
+    </div>
+</div>

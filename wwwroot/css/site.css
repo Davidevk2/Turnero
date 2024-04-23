@@ -20,3 +20,24 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.grid-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  width: 80%;
+  margin: 30px auto;
+}
+
+.grid-item{
+  padding:30px;
+  border:1.5px solid black;
+  border-radius: .25rem;
+  color: black;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+a{
+  text-decoration: none;
+}

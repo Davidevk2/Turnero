@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Ingreso";
+    string format = "dd/MM/yyyy HH:mm:ss"; 
+    var now = DateTime.Now.ToString(format);
+}
+
+<div class="container">
+    <div class="row">
+        <div class="d-flex float-end">
+            <P>@now</P>
+        </div>
+    </div>
+    <div class="text-center">
+        <div class="card">
+            <div class="card-body">
+            <h2 class="card-title">Ingrese su numero de documento</h2>
+            <form asp-controller="Home" asp-action="Categorias" method="post">
+                <div class="form-group">
+                    <select name="tipo" id="" class="form-control form-control-lg">
+                        @* <option value="" selected>Seleccione su tipo de documento</option> *@
+                        <option value="CC">Cedula Ciudadania</option>
+                        <option value="TI">Tarjeta Identidad</option>
+                        <option value="PS">Pasaporte</option>
+                        <option value="PP">Permiso permanencia</option>
+                        <option value="RC">Registro Civil</option>
+                    </select>
+                </div><br>
+                <div class="form-group">
+                    <input type="text" name="documento" class="form-control form-control-lg " placeholder="Ingrese su numero de documento">
+                </div><br>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary">Ingresar</button>
+                </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
+</div>

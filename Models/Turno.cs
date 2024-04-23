@@ -11,7 +11,6 @@ namespace Turnos.Models
     {
         [Key]
         public int Id { get; set; }
-
         public string Categoria {get; set;}
         public string TipoDocumento {get; set;}
         public string Identificacion {get; set;}
@@ -19,7 +18,7 @@ namespace Turnos.Models
         public DateTime FechaIngreso {get; set;}
         public DateTime FechaSalida {get; set;}
         public string Estado {get; set;}
-        
+
         [ForeignKey ("Modulos")]
         public int IdModulo { get; set; }
 
