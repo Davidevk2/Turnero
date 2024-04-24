@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Turnos.Models;
 using Data;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 
 namespace Turnos.Controllers;
 
@@ -21,12 +22,17 @@ public class HomeController : Controller
     }
 
     public async Task<IActionResult> Categorias(string documento, string tipo){
-        ViewBag.Usuario = tipo+"-"+documento;
+        HttpContext.Session.SetString("Usuario",tipo+"-"+documento );
+
+        ViewBag.Usuario = HttpContext.Session.GetString("Usuario");
+
         return  View(await _context.Categorias.Where(c => c.Estado == "Activa").ToArrayAsync());
     }
 
 
     public async Task<IActionResult> Turno(string siglas){
+
+        ViewBag.Usuario = HttpContext.Session.GetString("Usuario");
 
         string seleccion = "";
         string turno = "";
@@ -41,12 +47,29 @@ public class HomeController : Controller
 
     public async Task<IActionResult> TomarTurno(string turno){
 
+        string usuario = HttpContext.Session.GetString("Usuario");
+        string tipod = usuario.Substring(0,2);
+        string documento = usuario.Substring(3);
+
         string siglas = turno.Substring(0,2);
         var result = await _context.Categorias.FirstOrDefaultAsync(c => c.Siglas == siglas);
 
         result.Contador = result.Contador+1; 
 
         _context.Categorias.Update(result);
+        await _context.SaveChangesAsync();
+
+        var turnoIn = new Turno{
+            Categoria = result.Nombre,
+            TipoDocumento = tipod,
+            Identificacion = documento,
+            Ficho = turno,
+            FechaEntrada = DateTime.Now,
+            Estado = "Pendiente"
+
+        };
+
+        _context.Turnos.Add(turnoIn);
         await _context.SaveChangesAsync();
 
 
