@@ -10,6 +10,6 @@ namespace Data
         //modelos a utilizar
         public DbSet<Categoria> Categorias {get; set;}
         public DbSet<Turno> Turnos {get; set;}
-        public DbSet<Recepcion> Recepcions {get; set;}
+        public DbSet<Recepcion> Usuarios {get; set;}
     }
 }

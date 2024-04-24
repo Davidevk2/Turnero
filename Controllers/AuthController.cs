@@ -20,6 +20,11 @@ namespace Turnos.Controllers
             return View();
         }
 
+        public IActionResult Registro()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Login(string correo, string password){
 
             return Json(correo+password);

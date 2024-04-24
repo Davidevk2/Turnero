@@ -1,0 +1,31 @@
+@{
+    ViewData["title"] = "Registro";
+}
+
+<div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+            <h2 class="card-title text-center">Sign Up</h2>
+            <form asp-controller="Reception" asp-action="Create" method="post">
+                <div asp-validation-summary="All"></div>
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label for="" class="form-label">Nombre:</label>
+                    <input type="text" name="nombre" id="" placeholder="Ingrese su nombre.." class="form-control">
+                </div>
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label for="" class="form-label">Correo:</label>
+                    <input type="email" name="correo" id="" placeholder="Ingrese su correo.." class="form-control">
+                </div>
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label for="" class="form-label">Contraseña:</label>
+                    <input type="password" name="password" id="" class="form-control" placeholder="Ingrese su contraseña">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">Registro</button>
+                </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
+</div>
