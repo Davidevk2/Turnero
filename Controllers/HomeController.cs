@@ -76,6 +76,12 @@ public class HomeController : Controller
         return RedirectToAction("Index");
     }
 
+
+    public async Task<IActionResult> Turnos(){
+
+        return View(await _context.Turnos.ToListAsync());
+    }
+
  
 
 }
