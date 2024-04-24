@@ -1,6 +1,8 @@
 
+using BCrypt.Net;
 using Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Turnos.Controllers
@@ -15,7 +17,7 @@ namespace Turnos.Controllers
         _context = context;
        }
 
-        public IActionResult Index()
+        public IActionResult Login()
         {
             return View();
         }
@@ -25,20 +27,33 @@ namespace Turnos.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Login(string correo, string password){
 
-            return Json(correo+password);
-            // var usuarioLoggeado = await  _context.Recepcions.FirstOrDefaultAsync(em => em.correo == identificacion);
+            //return Json(correo+password);
+            var user = await  _context.Usuarios.FirstOrDefaultAsync(em => em.Correo == correo);
 
-            // if(usuarioLoggeado != null && usuarioLoggeado.Password == password){
-            //     HttpContext.Session.SetString("Nombre", usuarioLoggeado.Nombres); //crear variable de sesion 
-            //     return RedirectToAction("Index", "Empleados");
-            // }else{
+            if(user!= null){
+                if(BCrypt.Net.BCrypt.Verify(password, user.Password)){
+                    HttpContext.Session.SetString("Nombre", user.Nombre); //crear variable de sesion 
+                    HttpContext.Session.SetString("Id", user.Id.ToString()); //crear variable de sesion 
 
-            //  return RedirectToAction("Index"); //retornar al login
-            // }
+                    return RedirectToAction("Main");
 
-            return RedirectToAction("Index");
+                }else{
+                    ViewBag.Error = "Correo y/o contraseña incorrectos";
+                    return View();
+
+                }
+
+            }else{
+                    ViewBag.Error = "Correo y/o contraseña incorrectos";
+                    return View();
+               
+            }
+
+            
+
 
         }
 
