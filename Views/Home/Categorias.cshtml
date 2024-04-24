@@ -20,10 +20,11 @@
         <div class="text-center">
             <h1>Que quires realizar?</h1>
             <div class="grid-container">
-                <a asp-controller="Home" asp-action="Turno" asp-route-categoria="SC" class="grid-item">Solicitud Citas</a>
-                <a asp-controller="Home" asp-action="Turno" asp-route-categoria="PF" class="grid-item">Pago Facturas</a>
-                <a asp-controller="Home" asp-action="Turno" asp-route-categoria="AM " class="grid-item">Autorizacion Medicamentos</a>
-                <a asp-controller="Home" asp-action="Turno" asp-route-categoria="IG" class="grid-item">Informacion General</a>
+
+                @foreach(var categoria in Model){
+
+                    <a asp-controller="Home" asp-action="Turno" asp-route-siglas="@categoria.Siglas" class="grid-item">@categoria.Nombre</a>
+                }
             </div>
         </div>
     </div>

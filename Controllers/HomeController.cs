@@ -22,55 +22,35 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Categorias(string documento, string tipo){
         ViewBag.Usuario = tipo+"-"+documento;
-        return  View(await _context.Categorias.ToListAsync());
+        return  View(await _context.Categorias.Where(c => c.Estado == "Activa").ToArrayAsync());
     }
 
 
-    public IActionResult Turno(string categoria){
-
-        int? countSC = HttpContext.Session.GetInt32("countSC");
-        int? countPF = HttpContext.Session.GetInt32("countPF");
-        int? countAM = HttpContext.Session.GetInt32("countAM");
-        int? countIG = HttpContext.Session.GetInt32("countIG");
+    public async Task<IActionResult> Turno(string siglas){
 
         string seleccion = "";
         string turno = "";
+        var result = await _context.Categorias.FirstOrDefaultAsync(c => c.Siglas == siglas);
+        int contador = result.Contador +1;
 
-        switch (categoria)
-        {
-            case "SC":
-                seleccion = "SC";
-                countSC++;
-                turno = seleccion+"-"+(countSC < 10 ? "0"+countSC: countSC);
-                break;
-            case "PF":
-                seleccion = "PF";
-                countPF++;
-                turno = seleccion+"-"+(countPF < 10 ? "0"+countPF: countPF);
-                
-                break;
-            case "AM":
-                seleccion = "AM";
-                countAM++;
-                turno = seleccion+"-"+(countAM < 10 ? "0"+countAM: countAM);
-                
-                break;
-            case "IG":
-                seleccion = "IG";
-                countIG++;
-                turno = seleccion+"-"+(countIG < 10 ? "0"+countIG: countIG);
-                
-                break;
-            
-            default:
-            seleccion = "IG";
-                countIG++;
-                turno = seleccion+"-"+(countIG < 10 ? "0"+countIG: countIG);
-                break;
-        }
+        turno = siglas+"-"+(contador < 10 ? "00"+contador: "0"+contador);
 
         ViewBag.Turno = turno;
         return View();
+    }
+
+    public async Task<IActionResult> TomarTurno(string turno){
+
+        string siglas = turno.Substring(0,2);
+        var result = await _context.Categorias.FirstOrDefaultAsync(c => c.Siglas == siglas);
+
+        result.Contador = result.Contador+1; 
+
+        _context.Categorias.Update(result);
+        await _context.SaveChangesAsync();
+
+
+        return RedirectToAction("Index");
     }
 
  
