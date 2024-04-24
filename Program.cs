@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<TurnosContext>(options => 
+        options.UseMySql(
+            builder.Configuration.GetConnectionString("MySqlConnection"),
+            Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql")
+        )
+    );
 
 builder.Services.AddSession(options => {
     options.IdleTimeout = TimeSpan.FromMinutes(25);

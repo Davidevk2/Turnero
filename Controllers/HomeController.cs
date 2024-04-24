@@ -2,28 +2,27 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Turnos.Models;
+using Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Turnos.Controllers;
 
 public class HomeController : Controller
 {
-   
-    public IActionResult Index()
-    {
-        HttpContext.Session.SetInt32("countSC", 00);
-        HttpContext.Session.SetInt32("countPF", 00);
-        HttpContext.Session.SetInt32("countAM", 00);
-        HttpContext.Session.SetInt32("countIG", 00);
-        return View();
-    }
+    public readonly TurnosContext _context;
 
-    public IActionResult Ingreso(){
+    public HomeController(TurnosContext context){
+        _context = context;
+    }
+   
+
+    public IActionResult Index(){
         return View(); 
     }
 
-    public IActionResult Categorias(string documento, string tipo){
+    public async Task<IActionResult> Categorias(string documento, string tipo){
         ViewBag.Usuario = tipo+"-"+documento;
-        return  View();
+        return  View(await _context.Categorias.ToListAsync());
     }
 
 
