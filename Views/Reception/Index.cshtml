@@ -54,14 +54,14 @@
             <div class="card">
                 <div class="card-body">
                     <h2>Atender</h2>
-                    <form action="">
+                    <form asp-controller="Reception" asp-action="Atencion" method="post">
                         <div class="form-group">
                             <label for="">Modulo:</label>
                             <select name="" id="" class="form-control form-select">
-                                <option value="">Modulo #</option>
-                                <option value="">Modulo #</option>
-                                <option value="">Modulo #</option>
-                                <option value="">Modulo #</option>
+                                @foreach(var modulo in Model){
+                                <option value="@modulo.Id">@modulo.Nombre</option>
+                            }
+                                
                             </select>
 
                         </div><br>

@@ -4,10 +4,34 @@
 
 <div class="container">
     <div class="row">
+        <div class="d-flex">
+            <div class="col float-end"></div>
+        </div>
+    </div>
+    <div class="row">
         <h1>Modulo: </h1>
     </div>
     <div class="row">
-        <div class="col-md-5">Tabla</div>
+        <div class="col-md-5">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Turno</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var turno in Model){
+                        <tr>
+                            <td>@turno.Categoria</td>
+                            <td>@turno.Ficho</td>
+                            <td><a href="" class="btn btn-sm btn-primary">Llamar</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
         <div class="col-md-7">Info</div>
     </div>
 </div>

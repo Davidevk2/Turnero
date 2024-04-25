@@ -11,5 +11,6 @@ namespace Data
         public DbSet<Categoria> Categorias {get; set;}
         public DbSet<Turno> Turnos {get; set;}
         public DbSet<Recepcion> Usuarios {get; set;}
+        public DbSet<Modulo> Modulos {get; set;}
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Turnos.Models;
 
@@ -20,10 +21,11 @@ namespace Turnero.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewBag.Login = HttpContext.Session.GetString("Nombre");
-            return View();
+            
+            return View(await _context.Modulos.ToListAsync());
         }
 
 
@@ -49,10 +51,11 @@ namespace Turnero.Controllers
             return View();
         }
 
-          public IActionResult Atencion()
+          public async Task<IActionResult> Atencion()
         {
             ViewBag.Login = HttpContext.Session.GetString("Nombre");
-            return View();
+            
+            return View(await _context.Turnos.Where(t => t.Estado.Equals("En Espera")).ToListAsync());
         }
 
         
