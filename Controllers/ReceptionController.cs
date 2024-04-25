@@ -58,6 +58,14 @@ namespace Turnero.Controllers
             return View(await _context.Turnos.Where(t => t.Estado.Equals("En Espera")).ToListAsync());
         }
 
+
+        public async Task<IActionResult>Modulos()
+        {
+            ViewBag.Login = HttpContext.Session.GetString("Nombre");
+            
+            return View(await _context.Modulos.ToListAsync());
+        }
+
         
     }
 }

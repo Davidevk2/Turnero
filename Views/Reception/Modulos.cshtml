@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Modulos";
+}
+@model Modulo
+
+<div class="container">
+    <div class="row">
+
+    </div>
+    <h1>Lista de modulos</h1>
+ 
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <form action="">
+                        <div class="form-group">
+                            <label asp-for="Nombre"></label>
+                            <input asp-for="Nombre" class="form-control" placeholder="Ingrese nombre del modulo">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Estado"></label>
+                            <select name="" id="" asp-for="Estado">
+                                <option value="Habilitado">Habilitado</option>
+                                <option value="nhabilitado">Inhabilitado</option>
+                            </select>
+                        </div><br>
+                        <div class="form-group">
+                        <button class="btn btn-success">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8"></div>
+    </div>
+</div>
