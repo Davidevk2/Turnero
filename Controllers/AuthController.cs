@@ -38,7 +38,7 @@ namespace Turnos.Controllers
                     HttpContext.Session.SetString("Nombre", user.Nombre); //crear variable de sesion 
                     HttpContext.Session.SetString("Id", user.Id.ToString()); //crear variable de sesion 
 
-                    return RedirectToAction("Main");
+                    return RedirectToAction("Index", "Reception");
 
                 }else{
                     ViewBag.Error = "Correo y/o contraseña incorrectos";

@@ -22,6 +22,7 @@ namespace Turnero.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Login = HttpContext.Session.GetString("Nombre");
             return View();
         }
 
@@ -40,6 +41,18 @@ namespace Turnero.Controllers
             await _context.Usuarios.AddAsync(newUser);
             _context.SaveChanges();
             return RedirectToAction("Index","Home");
+        }
+
+           public IActionResult Turnos()
+        {
+            ViewBag.Login = HttpContext.Session.GetString("Nombre");
+            return View();
+        }
+
+          public IActionResult Atencion()
+        {
+            ViewBag.Login = HttpContext.Session.GetString("Nombre");
+            return View();
         }
 
         
