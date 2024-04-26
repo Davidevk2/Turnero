@@ -1,7 +1,6 @@
 @{
     ViewData["Title"] = "Modulos";
 }
-@model Modulo
 
 <div class="container">
     <div class="row">
@@ -15,12 +14,12 @@
                 <div class="card-body">
                     <form action="">
                         <div class="form-group">
-                            <label asp-for="Nombre"></label>
-                            <input asp-for="Nombre" class="form-control" placeholder="Ingrese nombre del modulo">
+                            <label for="Nombre"></label>
+                            <input name="Nombre" class="form-control" placeholder="Ingrese nombre del modulo">
                         </div>
                         <div class="form-group">
-                            <label asp-for="Estado"></label>
-                            <select name="" id="" asp-for="Estado">
+                            <label for="Estado"></label>
+                            <select name="" id="" name="Estado">
                                 <option value="Habilitado">Habilitado</option>
                                 <option value="nhabilitado">Inhabilitado</option>
                             </select>

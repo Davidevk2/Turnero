@@ -7,7 +7,7 @@ using Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Turnos.Models;
+using Models;
 
 namespace Turnero.Controllers
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Turnos.Models
+namespace Models
 {
     public class Categoria
     {

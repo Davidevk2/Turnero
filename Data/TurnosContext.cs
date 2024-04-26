@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Turnos.Models;
+using Models;
+
 
 namespace Data
 {
