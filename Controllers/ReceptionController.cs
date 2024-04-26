@@ -76,6 +76,13 @@ namespace Turnero.Controllers
             return View(await _context.Modulos.ToListAsync());
         }
 
+         public async Task<IActionResult>Usuarios()
+        {
+            ViewBag.Login = HttpContext.Session.GetString("Nombre");
+            
+            return View(await _context.Usuarios.ToListAsync());
+        }
+
         
     }
 }
