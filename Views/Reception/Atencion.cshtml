@@ -6,7 +6,7 @@
     <div class="row">
         <div class="d-flex">
             <div class="col float-end">
-                <a sp>Regresar</a>
+                <a asp-controller="Reception" asp-action="Index">Regresar</a>
             </div>
         </div>
     </div>
@@ -18,22 +18,43 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Categoria</th>
                         <th>Turno</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @{int countRecord = 1;}
                     @foreach(var turno in Model){
                         <tr>
+                        <td>@countRecord</td>
                             <td>@turno.Categoria</td>
                             <td>@turno.Ficho</td>
                             <td><a href="" class="btn btn-sm btn-primary">Llamar</a></td>
                         </tr>
+                        countRecord++;
                     }
                 </tbody>
             </table>
+
+            <div class="row">
+                <a href="" class="btn btn-lg btn-success">Llamar siguente</a>
+            </div>
         </div>
-        <div class="col-md-7">Info</div>
+        <div class="col-md-7">
+            <h2>Turno en atención</h2>
+            
+            <div class="card text-center">
+                <div class="card-body ">
+                    <h3 class="card-title">IG-03</h3>
+                    <p class="card-text">CC-120314</p>
+                    <p class="card-text">CC-120314</p>
+                </div>
+                <div class="card-footer">
+                    <a href="" class="btn btn-primary">Finalizar</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

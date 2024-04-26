@@ -11,6 +11,7 @@
             <table class="table text-center">
                 <thead>
                 <tr>
+                    <th>#</th>
                     <th>MODULO</th>
                     <th>TURNO</th>
                 </tr>
@@ -20,9 +21,11 @@
                     @foreach(var turno in ViewBag.tAtencion){
 
                         <tr>
+    
                             <td>@turno.Id</td>
                             <td>@turno.Ficho</td>
                         </tr>
+
                     }
                 </tbody>
             </table>

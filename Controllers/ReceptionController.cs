@@ -28,7 +28,8 @@ namespace Turnero.Controllers
             ViewBag.Modelos = await _context.Modulos.ToListAsync();
             var result  = await _context.Turnos.ToListAsync();
 
-            ViewBag.Total = result.Where(e=> e.Estado.Equals("En Espera"));
+
+            ViewBag.TotalPen = result.Where(e=> e.Estado.Equals("Pendiente")).Count();
             // ViewBag.Categorias = result.Where(e => e.Estado == "En Espera").Select(c => new {c.Categoria}).GroupBy(e=> e.Categoria).Count();
             ViewBag.Categorias = result.Where(t => t.Estado.Equals("Pendiente"))
                                         .GroupBy(t => t.Categoria)
