@@ -55,10 +55,10 @@ namespace Turnero.Controllers
             return RedirectToAction("Index","Home");
         }
 
-           public IActionResult Turnos()
+        public async Task<IActionResult> Turnos()
         {
             ViewBag.Login = HttpContext.Session.GetString("Nombre");
-            return View();
+            return View(await _context.Turnos.ToListAsync());
         }
 
           public async Task<IActionResult> Atencion()

@@ -7,5 +7,37 @@
 
     </div>
     <h1>Lista de Turnos</h1>
-    <table class="table"></table>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>#</td>
+                <th>Categoria</th>
+                <th>Identificacion</th>
+                <th>Turno</th>
+                <th>Fecha Entrada</th>
+           
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+             @{int countRecord = 1;}
+            @foreach(var item in Model){
+                <tr>
+                    <td>@countRecord</td>
+                    <td>@item.Categoria</td>
+                    <td>@item.Identificacion</td>
+                    <td>@item.Ficho</td>
+                    <td>@item.FechaEntrada</td>
+                    <td>@item.Estado</td>
+                 
+                    <td>
+                        <a href="" class="btn btn-sm btn-primary">Detalles</a>
+                        
+                    </td>
+                </tr>
+                countRecord++;
+            }
+        </tbody>
+    </table>
 </div>
