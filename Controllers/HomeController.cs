@@ -34,24 +34,24 @@ public class HomeController : Controller
 
         ViewBag.Usuario = HttpContext.Session.GetString("Usuario");
 
-        string seleccion = "";
-        string turno = "";
+
+        string ficho = "";
         var result = await _context.Categorias.FirstOrDefaultAsync(c => c.Siglas == siglas);
         int contador = result.Contador +1;
 
-        turno = siglas+"-"+(contador < 10 ? "00"+contador: "0"+contador);
+        ficho = siglas+"-"+(contador < 10 ? "00"+contador: "0"+contador);
 
-        ViewBag.Turno = turno;
+        ViewBag.Ficho = ficho;
         return View();
     }
 
-    public async Task<IActionResult> TomarTurno(string turno){
+    public async Task<IActionResult> TomarTurno(string ficho){
 
-        string usuario = HttpContext.Session.GetString("Usuario");
+        string? usuario = HttpContext.Session.GetString("Usuario");
         string tipod = usuario.Substring(0,2);
         string documento = usuario.Substring(3);
 
-        string siglas = turno.Substring(0,2);
+        string siglas = ficho.Substring(0,2);
         var result = await _context.Categorias.FirstOrDefaultAsync(c => c.Siglas == siglas);
 
         result.Contador = result.Contador+1; 
@@ -63,7 +63,7 @@ public class HomeController : Controller
             Categoria = result.Nombre,
             TipoDocumento = tipod,
             Identificacion = documento,
-            Ficho = turno,
+            Ficho = ficho,
             FechaEntrada = DateTime.Now,
             Estado = "Pendiente"
 
