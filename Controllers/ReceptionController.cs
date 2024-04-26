@@ -24,8 +24,18 @@ namespace Turnero.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.Login = HttpContext.Session.GetString("Nombre");
+
+            ViewBag.Modelos = await _context.Modulos.ToListAsync();
+            var result  = await _context.Turnos.ToListAsync();
+
+            ViewBag.Total = result.Where(e=> e.Estado.Equals("En Espera"));
+            // ViewBag.Categorias = result.Where(e => e.Estado == "En Espera").Select(c => new {c.Categoria}).GroupBy(e=> e.Categoria).Count();
+            ViewBag.Categorias = result.Where(t => t.Estado.Equals("Pendiente"))
+                                        .GroupBy(t => t.Categoria)
+                                        .Select(g => new { Categoria = g.Key, Total = g.Count() })
+                                        .ToList();
             
-            return View(await _context.Modulos.ToListAsync());
+            return View();
         }
 
 

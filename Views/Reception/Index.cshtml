@@ -4,49 +4,67 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">Usuarios</h3>
-                </div>
-                <div class="card-footer">
-                    <a asp-controller="" asp-action="">Gestionar usuarios &rightarrow;</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">Modulos</h3>
-                </div>
-                <div class="card-footer">
-                    <a asp-controller="Reception" asp-action="Modulos">Gestionar Modulos &rightarrow;</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">Turnos</h3>
-                </div>
-                <div class="card-footer">
-                    <a asp-controller="" asp-action="">Gestionar Turnos &rightarrow;</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
+            <div class="Item">
             <table class="table">
                 <thead>
-                    <tr>
-                        <th>Turnos</th>
+                    <tr >
+                        <th colspan="2">Turnos Pendientes</th>
                     </tr>
                     <tr>
-                        <th>Estado</th>
+                        <th>Servicio</th>
                         <th>Total</th>
                     </tr>
                 </thead>
+                <tbody>
+                    
+                    @foreach(var item in ViewBag.Categorias){
+                        <tr>
+                            <td>@item.Categoria</td>
+                            <td>@item.Total</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="grid-container">
+                <div class="Item">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Usuarios</h3>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="" asp-action="">Gestionar usuarios &rightarrow;</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="Item">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Modulos</h3>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Reception" asp-action="Modulos">Gestionar Modulos &rightarrow;</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="Item">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Turnos</h3>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="" asp-action="">Gestionar Turnos &rightarrow;</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
     </div>
 
     <div class="row">
@@ -58,7 +76,7 @@
                         <div class="form-group">
                             <label for="">Modulo:</label>
                             <select name="" id="" class="form-control form-select">
-                                @foreach(var modulo in Model){
+                                @foreach(var modulo in ViewBag.Modelos){
                                 <option value="@modulo.Id">@modulo.Nombre</option>
                             }
                                 
