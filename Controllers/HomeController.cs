@@ -79,7 +79,11 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Turnos(){
 
-        return View(await _context.Turnos.ToListAsync());
+        var resultTurnos = await _context.Turnos.ToListAsync();
+
+        ViewBag.TAtencion = resultTurnos.Where(e=> e.Estado == "Atendiendo").Take(6); 
+
+        return View();
     }
 
  
